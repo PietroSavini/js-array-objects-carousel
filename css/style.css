@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img{
+    max-width: 100%;
+    
+}
+
+/*  common */
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul{
+    list-style: none;
+}
+
+
+/* carousel------------------------------------------------------------------------------- */
+.carousel{
+    width: 80%;
+    height: 550px;
+    display: flex;
+}
+
+.carousel-main{
+    width: 80%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.carousel-main ul{
+    width: 100%;
+    height: 100%;
+
+}
+
+.slide{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.carousel-preview{
+    height: 100%;
+    width: 20%;
+    position: relative;
+}
+
+.img-container{
+   height: calc(100% / 5);
+   position: relative;
+   
+}
+
+.img-container img{
+    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+}
+
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* active funcionality */
+div.active>div{
+    background-color: transparent;
+    border: 2px solid #fff;
+    transition: 200ms;
+}
+
+.active{
+    display: block;
+}
+
+
+/* buttons */
+.btn{
+   width: 50px;
+   height: 35px;
+   background-color: rgba(255, 255, 255, 0.2);
+   line-height: 35px;
+   text-align: center; 
+   border-radius: 10px;
+   position: absolute;
+   z-index: 3;
+   left: 50%;
+   transform: translate(-50%);
+   cursor: pointer;
+   transition: .3s;
+}
+
+.next-btn{
+    bottom:0px;
+}
+
+.btn:hover{
+    background-color: rgba(255, 255, 255, .5);
+}
+.btn:active{
+    transform: translate(-50%) scale(1.1);
+    background-color: rgba(255, 255, 255, .9);
+    transition: 0s;
+}
