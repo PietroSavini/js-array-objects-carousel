@@ -28,7 +28,6 @@ let img = "";
 const timer = 5000; //timer funzione autolpay
 const preview = document.querySelector(".carousel-preview");
 const imgContainer = document.querySelector(".slides");
-
 //ciclo forEach per aggiungere immagini HTML
 images.forEach((element) => {
     const currentImg = element.image;
@@ -42,15 +41,31 @@ images.forEach((element) => {
 imgContainer.innerHTML = img;
 preview.innerHTML += thumbnail;
 
-
 //gestione carosello
 //stato iniziale
 let active = 0;
-const thumbnailElement = document.getElementsByClassName("img-container");
-const sliderElement = document.getElementsByClassName("slide");
+const thumbnailElement = document.querySelectorAll(".img-container");
+const sliderElement = document.querySelectorAll(".slide");
 sliderElement[active].classList.add("active");
 thumbnailElement[active].classList.add("active");
 
+//impostazione active al click del thumbnail
+    thumbnailElement.forEach((elem, index)=> {
+    elem.addEventListener("click", function(){
+        //imposto active all indice dell elemento cliccato
+        active=index;
+        //rimuovo active da elementi precedenti
+        sliderElement.forEach(slide => slide.classList.remove("active"));
+        thumbnailElement.forEach(thumbnail => thumbnail.classList.remove("active"));
+        //aggiungo classe active al thumbnail corrente
+        sliderElement[active].classList.add("active");
+        thumbnailElement[active].classList.add("active");
+        //fermo l'autoplay
+        clearInterval(interval)
+        //faccio ripartire l'autoplay
+        interval = setInterval(autoPlay, timer);
+    });
+})
 // intervallo di tempo per eseguire la funzione "autoPlay" ogni 3 secondi
 let interval = setInterval(autoPlay, timer);
 
