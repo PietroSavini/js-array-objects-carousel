@@ -20,6 +20,7 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 ul{
@@ -85,6 +86,7 @@ li.active{
 .img-container{
    height: calc(100% / 5);
    position: relative;
+   cursor: pointer;
 
 }
 
@@ -99,6 +101,11 @@ li.active{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    transition: 200ms;
+}
+
+.overlay:hover{
+    opacity: 0;
 }
 
 /* active funcionality */
@@ -143,6 +150,55 @@ div.active>div{
     background-color: rgba(255, 255, 255, .9);
     transition: 0s;
 }
+
+/* autoplay buttons styling */
+.autoplay-comands{
+    display: flex;
+    margin-bottom: 1rem;
+    background-color: rgb(46, 45, 45);
+    border-radius: 50px;
+    padding: 1rem .5rem; 
+    width: 30%;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 20px black;
+}
+
+#hidden{
+    opacity: 0;
+}
+
+.autoplay-comands i{
+    font-size: 50px;
+    opacity: .5;
+    transform: scale(.9);
+    position: absolute;
+}
+
+.btn-stop-play{
+    width: 50px;
+    border-radius: 50%;
+    height: 50px ;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 200ms;
+    position: relative;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.589);
+    
+}
+
+.btn-stop-play:hover i{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.btn-stop-play:active{
+    transform: scale(.9);
+}
+
 
 /* img animation on hover of container------------------------------------------ */
 
@@ -237,3 +293,4 @@ div.active>div{
         transform: translateX(-10%) translateY(15%) scale(1.4);
     }
 }
+
