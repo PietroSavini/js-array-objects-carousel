@@ -23,6 +23,7 @@ const images = [
     }
 ];
 
+
 let thumbnail = "";
 let img = "";
 const timer = 5000; //timer funzione autolpay
@@ -31,7 +32,13 @@ const imgContainer = document.querySelector(".slides");
 //ciclo forEach per aggiungere immagini HTML
 images.forEach((element) => {
     const currentImg = element.image;
-    img += `<li class="slide"><img src="${currentImg}" alt=""></li>`;
+    img += `<li class="slide">
+                <div class="main-slides-overlay">
+                     <h2 id="title">${element.title}</h2>
+                    <p id="description">${element.text}</p>
+                </div>
+                <img src="${currentImg}" alt="">
+            </li>`;
     thumbnail += `
         <div class="img-container">
             <div class="overlay"></div>
@@ -48,6 +55,24 @@ const thumbnailElement = document.querySelectorAll(".img-container");
 const sliderElement = document.querySelectorAll(".slide");
 sliderElement[active].classList.add("active");
 thumbnailElement[active].classList.add("active");
+
+//attivazione/disattivazione autoplay tramite bottone play
+let autoPlayOn = true;
+const playBtn = document.querySelector(".autoplay-btn");
+playBtn.addEventListener("click", function(){
+    const status = playBtn.children;
+    if(autoPlayOn){
+        clearInterval(interval);
+        autoPlayOn=false;
+        status[1].setAttribute('id','hidden');
+        status[0].removeAttribute("id","hidden");
+    }else{
+        interval = setInterval(autoPlay, timer);
+        autoPlayOn = true;
+        status[0].setAttribute('id','hidden');
+        status[1].removeAttribute("id","hidden");
+    }
+})
 
 //impostazione active al click del thumbnail
     thumbnailElement.forEach((elem, index)=> {

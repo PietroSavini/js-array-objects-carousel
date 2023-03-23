@@ -5,29 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Carousel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <SCRIPT language="JavaScript">
+        <!--
+        self.moveTo(0,0);
+        self.resizeTo(screen.availWidth,screen.availHeight);
+        //-->
+        </script>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="autoplay-comands">
-            <div class="autoplay-btn btn-stop-play">
-                <i class="fa-regular fa-circle-play" style="color: #d4d4d4;"></i>
-                <i class="fa-regular fa-circle-stop" id="hidden" style="color: #d4d4d4;"></i>
-            </div>
+<!-- mi sono rifiutato di creare il tasto reset carosello scusate... -->
 
-        </div>
+    <div class="wrapper">
+        <p style="color: rgb(73, 73, 73);">(è presente un animazione all' hover dell immagine principale del carosello)</p>
+        <br>
+        
+        <!-- carousel -->
         <div class="carousel">
+            <!-- carousel main content -->
             <div class="carousel-main">
                 <ul class="slides"></ul>
             </div>
+            <!-- /carousel main content -->
+
+            <!-- thumbnails -->
             <div class="carousel-preview">
                 <div class="btn back-btn"><i class="fa-solid fa-chevron-up"></i></div>
                 <div class="btn next-btn"><i class="fa-solid fa-chevron-down"></i></div>
             </div>
+            <!-- thumbnails -->
         </div>
+        <!-- /carousel -->
+
+        <!-- autoplay functionality -->
+        <div class="autoplay-comands">
+            <div class="autoplay-btn btn-stop-play">
+                <i class="fa-regular fa-circle-play" style="color: #d4d4d4; "id="hidden"></i>
+                <i  class="fa-regular fa-circle-stop" style="color: #d4d4d4;"></i>
+            </div>
+        </div>
+        <!-- /autoplay functionality -->
     </div>
+    <!-- my script -->
     <script src="js/script.js"></script>
-    
 </body>
 </html>
