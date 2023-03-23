@@ -4,9 +4,13 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: rgb(35, 34, 34);
+}
+
 img{
     max-width: 100%;
-    
+
 }
 
 /*  common */
@@ -26,8 +30,10 @@ ul{
 /* carousel------------------------------------------------------------------------------- */
 .carousel{
     width: 80%;
-    height: 550px;
+    max-width: 1100px;
+    height: 400px;
     display: flex;
+    box-shadow: 0px 0px 20px black;
 }
 
 .carousel-main{
@@ -38,7 +44,11 @@ ul{
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
+
+
 
 .carousel-main ul{
     width: 100%;
@@ -47,15 +57,24 @@ ul{
 }
 
 .slide{
-    display: none;
+    position: absolute;
     width: 100%;
     height: 100%;
+    opacity: 0;
+    transition: 1s opacity ease-in-out;
+    z-index: 1;
+}
+
+li.active{
+    opacity: 1;
+    transition: 2s opacity ease-in;
 }
 
 .slide img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+
 }
 
 .carousel-preview{
@@ -67,11 +86,11 @@ ul{
 .img-container{
    height: calc(100% / 5);
    position: relative;
-   
+
 }
 
 .img-container img{
-    object-fit: cover; 
+    object-fit: cover;
     width: 100%;
     height: 100%;
 }
@@ -99,9 +118,9 @@ div.active>div{
 .btn{
    width: 50px;
    height: 35px;
-   background-color: rgba(255, 255, 255, 0.2);
+   background-color: transparent;
    line-height: 35px;
-   text-align: center; 
+   text-align: center;
    border-radius: 10px;
    position: absolute;
    z-index: 3;
@@ -109,6 +128,7 @@ div.active>div{
    transform: translate(-50%);
    cursor: pointer;
    transition: .3s;
+   color: rgba(255, 255, 255, .5);
 }
 
 .next-btn{
@@ -117,9 +137,109 @@ div.active>div{
 
 .btn:hover{
     background-color: rgba(255, 255, 255, .5);
+    color: rgba(0, 0, 0, 0.7);
 }
 .btn:active{
     transform: translate(-50%) scale(1.1);
     background-color: rgba(255, 255, 255, .9);
     transition: 0s;
+}
+
+/* img animation on hover of container------------------------------------------ */
+
+.carousel-main:hover .slide>img{
+    animation: image-loop 20s ease-in infinite;
+}
+
+
+
+/* si l ho fatto davvero tornassi indietro non lo rifarei */
+@keyframes image-loop {
+    /* imposto posizione di partenza */
+    0%{
+        opacity: 0;
+        transform: scale(1.5) translateX(0%) translateY(10%);
+    }
+    /* inizio animazione */
+    5%{
+        opacity: 1;
+        transform: scale(1.5) translateX(0%) translateY(10%);
+    }
+
+    15%{
+        opacity: 1;
+        transform: translateX(20%) scale(1.5) translateY(10%);
+    }
+    20%{
+        opacity: 0;
+        transform: translateX(20%) scale(1.5) translateY(10%);
+    }
+    /* fine prima animazione */
+
+    /* reset nuova posizione */
+    25%{
+        opacity: 0;
+        transform: translateX(0%) translateY(0%)scale(1);
+    }
+    /* inizio seconda animazione */
+    30%{
+        opacity: 1;
+        transform: translateX(0%) translateY(0%)scale(1);
+    }
+    40%{
+        opacity: 1;
+        transform: translateX(-20%) translateY(15%) scale(1.5);
+    }
+    45%{
+        opacity:0;
+        transform: translateX(-20%) translateY(15%)scale(1.5);
+    }
+    /* fine seconda animazione */
+
+    /* reset nuova posizione */
+    50%{
+        opacity: 0;
+        transform: translateX(-20%) translateY(-20%) scale(1.6);
+    }
+    /* inizio terza animazione */
+    55%{
+        opacity: 1;
+        transform: translateX(-20%) translateY(-20%) scale(1.6);
+    }
+    65%{
+        opacity: 1;
+        transform: translateX(-20%) translateY(10%) scale(1.6);
+    }
+    70%{
+        opacity: 0;
+        transform: translateX(-20%) translateY(10%) scale(1.6);
+    }
+    /* fine terza animazione */
+
+    /* resetto posizione */
+    75%{
+        opacity: 0;
+        transform: translateX(30%) translateY(15%) scale(1.8);
+    }
+    /* inizio quarta animazione */
+    80%{
+        opacity: 1;
+        transform: translateX(30%) translateY(15%) scale(1.8);
+    }
+    90%{
+        opacity: 1;
+        transform: translateX(-10%) translateY(15%) scale(1.4);
+    }
+    95%{
+        opacity: 1;
+        transform: translateX(-10%) translateY(15%) scale(1.4);
+    }
+    /* fine quarta animazione */
+    100%{
+        opacity: 0;
+        transform: translateX(-10%) translateY(15%) scale(1.4);
+    }
+
+
+
 }

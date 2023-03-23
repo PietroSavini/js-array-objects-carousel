@@ -1,30 +1,48 @@
-//genero immagini dinamicament
+//imported data from other document
 const images = [
-    `img/01.jpg`,
-    `img/02.jpg`,
-    `img/03.jpg`,
-    `img/04.jpg`,
-    `img/05.jpg`,
-]
+    {
+        image: 'img/01.webp',
+        title: 'Marvel\'s Spiderman Miles Morale',
+        text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+    }, {
+        image: 'img/02.webp',
+        title: 'Ratchet & Clank: Rift Apart',
+        text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+    }, {
+        image: 'img/03.webp',
+        title: 'Fortnite',
+        text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+    }, {
+        image: 'img/04.webp',
+        title: 'Stray',
+        text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+    }, {
+        image: 'img/05.webp',
+        title: "Marvel's Avengers",
+        text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
+    }
+];
+
 let thumbnail = "";
 let img = "";
+const timer = 5000; //timer funzione autolpay
 const preview = document.querySelector(".carousel-preview");
 const imgContainer = document.querySelector(".slides");
-for (let i = 0 ; i < images.length ; i++ ){
-    const currentImg = images[i];
-    img +=
-        `<li class="slide"><img src="${currentImg}" alt=""></li>`;
-    thumbnail += 
-        `
+
+//ciclo forEach per aggiungere immagini HTML
+images.forEach((element) => {
+    const currentImg = element.image;
+    img += `<li class="slide"><img src="${currentImg}" alt=""></li>`;
+    thumbnail += `
         <div class="img-container">
             <div class="overlay"></div>
             <img src="${currentImg}" alt="">
-        </div>
-        `;
-}
-
+        </div>`;
+})
 imgContainer.innerHTML = img;
 preview.innerHTML += thumbnail;
+
+
 //gestione carosello
 //stato iniziale
 let active = 0;
@@ -34,7 +52,7 @@ sliderElement[active].classList.add("active");
 thumbnailElement[active].classList.add("active");
 
 // intervallo di tempo per eseguire la funzione "autoPlay" ogni 3 secondi
-let interval = setInterval(autoPlay, 3000);
+let interval = setInterval(autoPlay, timer);
 
 //funzionalità bottoni
 const nextBtn = document.querySelector(".next-btn");
@@ -54,7 +72,7 @@ nextBtn.addEventListener("click", function() {
     sliderElement[active].classList.add("active");
     thumbnailElement[active].classList.add("active");
     //faccio ripartire l'intervallo di tempo
-    interval = setInterval(autoPlay,3000);
+    interval = setInterval(autoPlay,timer);
 })
 
 //prev btn
@@ -74,7 +92,7 @@ prevBtn.addEventListener("click", function() {
     sliderElement[active].classList.add("active");
     thumbnailElement[active].classList.add("active");
     //faccio ripartire l'intervallo di tempo
-    interval = setInterval(autoPlay,3000);
+    interval = setInterval(autoPlay,timer);
 })
 
 
@@ -95,12 +113,16 @@ function autoPlay (){
 
 
 //blocco del carosello all' hover e reset all uscita dell hover
+//animazioni on hover delle immagini
 const container = document.querySelector(".carousel-main");
 container.addEventListener("mouseover", function() {
     clearInterval(interval);
 });
 
 container.addEventListener("mouseout", function() {
-    interval = setInterval(autoPlay, 3000);
+    interval = setInterval(autoPlay, timer);
 });
+
+
+
 
